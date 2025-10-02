@@ -1,4 +1,5 @@
 #!/usr/bin/env node
+const parseFile = require('./fileParser');
 const { Command } = require('commander');
 const program = new Command();
 
@@ -8,7 +9,10 @@ program
   .option('-f, --format <type>', 'output format')
   .arguments('<filepath1> <filepath2>')
   .action((filepath1, filepath2) => {
-    console.log(`Comparing files: ${filepath1} vs ${filepath2}`);
+  const data1 = parseFile(filepath1);
+  const data2 = parseFile(filepath2);
+  console.log('File 1:', data1);
+  console.log('File 2:', data2);
   })
   .parse(process.argv);
 
