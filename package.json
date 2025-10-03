@@ -3,6 +3,9 @@
   "version": "1.0.0",
   "description": "[![Actions Status](https://github.com/AnaMirSia/frontend-project-46/actions/workflows/hexlet-check.yml/badge.svg)](https://github.com/AnaMirSia/frontend-project-46/actions)",
   "homepage": "https://github.com/AnaMirSia/frontend-project-46#readme",
+  "bin": {
+    "gendiff": "bin/gendiff.js"
+  },
   "bugs": {
     "url": "https://github.com/AnaMirSia/frontend-project-46/issues"
   },
@@ -12,8 +15,8 @@
   },
   "license": "ISC",
   "author": "",
-  "type": "commonjs",
-  "main": "index.js",
+  "type": "module",
+  "main": "./gendiff.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },

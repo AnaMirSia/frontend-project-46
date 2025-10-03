@@ -1,6 +1,6 @@
 #!/usr/bin/env node
-const parseFile = require('./fileParser');
-const { Command } = require('commander');
+import {parseJSON, genDiff} from '../Parse/fileParser.js'
+import {Command }from 'commander'
 const program = new Command();
 
 program
@@ -9,10 +9,10 @@ program
   .option('-f, --format <type>', 'output format')
   .arguments('<filepath1> <filepath2>')
   .action((filepath1, filepath2) => {
-  const data1 = parseFile(filepath1);
-  const data2 = parseFile(filepath2);
-  console.log('File 1:', data1);
-  console.log('File 2:', data2);
+  const data1 = parseJSON(filepath1);
+  const data2 = parseJSON(filepath2);
+  const diff = genDiff(data1, data2);
+  console.log(diff);
   })
   .parse(process.argv);
 
