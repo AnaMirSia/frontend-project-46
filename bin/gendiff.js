@@ -1,21 +1,19 @@
 #!/usr/bin/env node
-import {parseJSON, genDiff} from '../Parse/fileParser.js'
-import {Command }from 'commander'
-const program = new Command();
+import { genDiff } from '../src/genDiff.js'
+import { Command } from 'commander'
+import parse from '../src/fileParser.js'
+const program = new Command()
 
 program
-  .version('0.0.1')
+  .name('gendiff')
+  .version('1.0.0', '-V, --version', 'output the version number')
   .description('Compares two configuration files and shows a difference.')
   .option('-f, --format <type>', 'output format')
   .arguments('<filepath1> <filepath2>')
   .action((filepath1, filepath2) => {
-  const data1 = parseJSON(filepath1);
-  const data2 = parseJSON(filepath2);
-  const diff = genDiff(data1, data2);
-  console.log(diff);
+    const data1 = parse(filepath1)
+    const data2 = parse(filepath2)
+    const diff = genDiff(data1, data2)
+    console.log(diff)
   })
-  .parse(process.argv);
-
-if (!process.argv.slice(2).length) {
-  program.help();
-}
+program.parse(process.argv)
